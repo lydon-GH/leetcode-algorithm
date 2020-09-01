@@ -1,5 +1,7 @@
 package array;
 
+import java.util.*;
+
 /**
  * 题目 #
  * Given an array of integers, return indices of the two numbers such that they add up to a specific target.
@@ -25,12 +27,24 @@ package array;
 public class TwoSum {
 
     public static void main(String[] args) {
-        int[] nums=new int[]{3,23,20,1,4};
+        int[] nums=new int[]{3,23,20,2,4,15};
         int target=17;
-        System.out.println(TwoSum.towSum(nums,target));
+        int[] result=TwoSum.towSum(nums,target);
+        for (int i : result) {
+            System.out.println(i+",");
+        }
+
     }
 
     public static int[] towSum(int[] nums,int target){
+        Map<Integer,Integer> map =new HashMap<Integer,Integer>();
+        for (int i = 0; i < nums.length; i++) {
+            int num=target-nums[i];
+            if(map.containsKey(num)){
+                return new int[]{map.get(num),i};
+            }
+            map.put(nums[i],i);
+        }
 
         return  null;
     }
